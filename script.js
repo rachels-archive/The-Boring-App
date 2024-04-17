@@ -30,3 +30,43 @@ function setBubblePosition(range, output) {
 
   output.style.left = `${thumbOffset}px`;
 }
+
+const activityForm = document.getElementById("activityForm");
+
+function handleSubmit(event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+  fetchActivity();
+
+  document.getElementById("activityFormBtn").innerHTML = "Regenerate";
+}
+
+async function fetchActivity() {
+  try {
+    var type = document.getElementById("type").value;
+    var participants = document.getElementById("participants").value;
+    var priceRange = document.getElementById("priceRange").value;
+
+    const url = `https://www.boredapi.com/api/activity?participants=${participants}&minPrice=0&maxPrice=${priceRange}&type=${type}`;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch activity");
+    }
+
+    const data = await response.json();
+    if (!data || !data.activity) {
+      document.getElementById("activityDesc").innerHTML =
+        "try changing the preferences as no activity is found.";
+    } else {
+      const activity = data.activity;
+
+      document.getElementById("activityDesc").innerHTML =
+        activity.toLowerCase() + ".";
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+activityForm.addEventListener("submit", handleSubmit);

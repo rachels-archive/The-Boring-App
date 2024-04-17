@@ -13,50 +13,67 @@
     <title>Boring App</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Are you bored?</h1>
-      <form id="activityForm">
-        <label for="type" class="form-label">Type:</label>
-        <select id="type" name="type" class="form-select mb-3">
-          <option value="">Any</option>
-          <option value="education">Education</option>
-          <option value="recreational">Recreational</option>
-          <option value="social">Social</option>
-          <option value="diy">DIY</option>
-          <option value="charity">Charity</option>
-          <option value="cooking">Cooking</option>
-          <option value="relaxation">Relaxation</option>
-          <option value="music">Music</option>
-          <option value="busywork">Busywork</option>
-        </select>
+    <div class="parent-container">
+      <div class="container">
+        <h2>Are you bored? Try out this activity generator!</h2>
+        <form id="activityForm">
+          <label for="type" class="form-label fw-bold">Type:</label>
+          <select id="type" name="type" class="form-select mb-3">
+            <option value="education">Education</option>
+            <option value="recreational">Recreational</option>
+            <option value="social">Social</option>
+            <option value="diy">DIY</option>
+            <option value="charity">Charity</option>
+            <option value="cooking">Cooking</option>
+            <option value="relaxation">Relaxation</option>
+            <option value="music">Music</option>
+            <option value="busywork">Busywork</option>
+          </select>
 
-        <label for="participants" class="form-label">Participants:</label>
-        <input
-          class="form-control mb-3"
-          type="number"
-          id="participants"
-          name="participants"
-          min="0"
-          value="1"
-          max="8"
-        />
-
-        <div class="position-relative">
-          <label for="priceRange" class="form-label mb-4">Price Range</label>
+          <label for="participants" class="form-label fw-bold"
+            >Participants:</label
+          >
           <input
-            class="form-range"
-            type="range"
-            id="priceRange"
-            name="priceRange"
+            class="form-control mb-3"
+            type="number"
+            id="participants"
+            name="participants"
             min="0"
-            max="100"
-            value="50"
+            value="1"
+            max="8"
           />
-          <output for="priceRange" id="priceValue" class="form-output"></output>
-        </div>
-      </form>
-    </div>
 
+          <div class="position-relative mb-3">
+            <label for="priceRange" class="form-label mb-5 fw-bold"
+              >Budget:</label
+            >
+            <input
+              class="form-range"
+              type="range"
+              id="priceRange"
+              name="priceRange"
+              min="0"
+              max="100"
+              value="0"
+            />
+            <output
+              for="priceRange"
+              id="priceValue"
+              class="form-output"
+            ></output>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="activityFormBtn">
+            Generate Activity
+          </button>
+        </form>
+      </div>
+
+      <div class="container activity mt-4">
+        <h5 class="m-0">You could&nbsp;</h5>
+        <h5 class="m-0" id="activityDesc"></h5>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
